@@ -4864,7 +4864,7 @@ textarea.form-control-lg {
 .list-group-item + .list-group-item.active {
   margin-top: calc(-1 * var(--bs-list-group-border-width));
   border-top-width: var(--bs-list-group-border-width);
-}
+} 
 
 .list-group-horizontal {
   flex-direction: row;

@@ -24,6 +24,24 @@
         .navbar-nav .nav-link:hover {
             color: #0056b3; /* Darker blue on hover */
         }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    
+        header {
+            padding-bottom: 0.2rem; /* Adjusted padding */
+        }
+    
+        .container {
+            padding-top: 0.2rem; /* Adjusted padding */
+        }
+    
+        .card-img-top {
+            width: 100%; /* Make the image take the full width of the card */
+            height: 200px; /* Set a fixed height */
+            object-fit: cover; /* Ensure the image covers the area without distortion */
+        }
     </style>
 </head>
 <body>
@@ -61,10 +79,16 @@
     </nav>
 
     <!-- Header -->
-    <header class="bg-grey text-white text-center py-5">
-        <h1 class="text-blue">Welcome to my website</h1>
-        <p class="lead text-blue">I am an aspiring cyber security professional. This website is dedicated to what skills I can offer, as well as my interests and a personal blog.</p>
-    </header>
+<header class="bg-grey text-white text-left py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-blue">Welcome to my website</h1>
+                <p class="lead text-blue">I am an aspiring cyber security professional. This website is dedicated to what skills I can offer, as well as my interests and a personal blog.</p>
+            </div>
+        </div>
+    </div>
+</header>
 
     <!-- Main Content -->
     <main class="container">
@@ -73,7 +97,7 @@
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
                         <a href="#">
-                        <img src="#" class="card-img-top" > </a>
+                        <img src="Images/Screenshot from 2025-03-13 18-11-19.png" class="card-img-top" > </a>
                         <div class="card-body">
                             <h2 class="card-title">Projects</h2>
                             <p class="card-text">Projects I am currently working on.</p>
@@ -85,11 +109,11 @@
                 </div>
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
-                        <a href="#">
-                        <img src="#" class="card-img-top"> </a>
+                        <a href="">
+                        <img src="Images/PXL_20250312_132021690.jpg" class="card-img-top"> </a>
                         <div class="card-body">
                             <h2 class="card-title">My interests</h2>
-                            <p class="card-text">Cyber Secuity + Tech, Cars, Music</p>
+                            <p class="card-text">Cyber Security + Tech, Cars, Music</p>
                         </div>
                         <div class="card-footer">
                             <a class="btn btn-primary btn-sm" href="#">More Info</a>
@@ -99,8 +123,7 @@
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
                         <a href="#">
-                            <img src="#">
-                        </a>
+                        <img src="Images/PXL_20250308_162521063.jpg" class="card-img-top"> </a>
                         <div class="card-body">
                             <h2 class="card-title">Blog</h2>
                             <p class="card-text">My personal blog. </p>

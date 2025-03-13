@@ -25,10 +25,10 @@
             color: #0056b3; /* Darker blue on hover */
         }
         body {
-            margin: 0;
-            padding: 0;
-        }
-    
+        color: #007bff; /* Set default text color to blue */
+        margin: 0;
+        padding: 0;
+    }
         header {
             padding-bottom: 0.2rem; /* Adjusted padding */
         }
@@ -36,7 +36,14 @@
         .container {
             padding-top: 0.2rem; /* Adjusted padding */
         }
-    
+
+         /* Additional styles for specific elements */
+    h1, h2, h3, h4, p {
+        color: #007bff; /* Ensure all headings and paragraphs are blue */
+    }
+        .footer-gap {
+        margin-top: 20px; /* Adjust the value as needed */
+    }
     </style>
 </head>
 <body>
@@ -57,16 +64,16 @@
                         <a class="nav-link" href="CV.html">CV</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Projects</a>
+                        <a class="nav-link" href="projects.html">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Interests</a>
+                        <a class="nav-link" href="interests.html">Interests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="blog.html">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="contact.html">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -79,34 +86,35 @@
     </style>
     <div class="container">
     <div class="col-md-8">
-    <main class="container mt-5">
+    <main class="container mt-5" style="padding-bottom: 20px;">
         <h1 class="font-weight-bold display-4">Title</h1>
         <!-- Image Added Here -->
         <div class="text-left">
         <div class="gap"></div>
         
-            <h2 class="text-left" style="text-decoration: bold;">Heading</h2>
+            <h2 class="text-blue" style="text-decoration: bold;">Heading</h2>
             <div class="gap"></div>
-            <p class="text-left custom-paragraph">Text</p>
+            <p class="text-blue custom-paragraph">Text</p>
             <div class="gap"></div>
             <h4 class="text-left" style="text-decoration: underline;">Text</h4>
-            <h2 class="text-center">Text</h2>
-            <p class="lead text-center">List</p>
+            <h2 class="text-blue custom-paragraph">Text</h2>
+            <p class="lead text-center text-blue">List</p>
             <ul class="list-group mt-4">
-                <li class="list-group-item">1. <strong>List:</strong> Example</li>
-                <li class="list-group-item">2. <strong>List</strong> Example</li>
-                <li class="list-group-item">3. <strong>List</strong> Example</li>
-                <li class="list-group-item">4. <strong>List</strong> Example</li>
-                <li class="list-group-item">5. <strong>List</strong> Example</li>
+                <li class="list-group-item text-blue">1. <strong>List:</strong> Example</li>
+                <li class="list-group-item text-blue">2. <strong>List</strong> Example</li>
+                <li class="list-group-item text-blue">3. <strong>List</strong> Example</li>
+                <li class="list-group-item text-blue">4. <strong>List</strong> Example</li>
+                <li class="list-group-item text-blue">5. <strong>List</strong> Example</li>
             </ul>
             <div class="gap"></div>
         </div>
         </div>
     </div>
+    <div>
     </main>
         
 <!-- Footer -->
-<footer class="bg-black text-center py-3">
+<footer class="bg-black text-center py-3" style="margin-top: 20px;">
     <p class="text-blue">&copy; 2025 Caleb Richards. All rights reserved.</p>
 </footer>
 

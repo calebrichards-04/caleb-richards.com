@@ -44,6 +44,11 @@
         .footer-gap {
         margin-top: 20px; /* Adjust the value as needed */
     }
+        .card-img-top {
+                width: 100%; /* Make the image take the full width of the card */
+                height: 200px; /* Set a fixed height */
+                object-fit: cover; /* Ensure the image covers the area without distortion */
+            }
     </style>
 </head>
 <body>
@@ -87,30 +92,45 @@
     <div class="container">
     <div class="col-md-8">
     <main class="container mt-5" style="padding-bottom: 20px;">
-        <h1 class="font-weight-bold display-4">Title</h1>
+        <h1 class="font-weight-bold display-4">Projects</h1>
         <!-- Image Added Here -->
         <div class="text-left">
         <div class="gap"></div>
         
-            <h2 class="text-blue" style="text-decoration: bold;">Heading</h2>
+        <p class="text-blue custom-paragraph">Click on the cards below to view projects I am currently working on.</p>
+            <!-- Content Row -->
             <div class="gap"></div>
-            <p class="text-blue custom-paragraph">Text</p>
-            <div class="gap"></div>
-            <h4 class="text-left" style="text-decoration: underline;">Text</h4>
-            <h2 class="text-blue custom-paragraph">Text</h2>
-            <p class="lead text-center text-blue">List</p>
-            <ul class="list-group mt-4">
-                <li class="list-group-item text-blue">1. <strong>List:</strong> Example</li>
-                <li class="list-group-item text-blue">2. <strong>List</strong> Example</li>
-                <li class="list-group-item text-blue">3. <strong>List</strong> Example</li>
-                <li class="list-group-item text-blue">4. <strong>List</strong> Example</li>
-                <li class="list-group-item text-blue">5. <strong>List</strong> Example</li>
-            </ul>
-            <div class="gap"></div>
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <a href="https://securesmarthome.org/">
+                        <img src="Images/smart-home-interface-with-augmented-realty-iot-object-interior-design_756748-3169-3896813610.jpg" class="card-img-top" > </a>
+                        <div class="card-body">
+                            <h2 class="card-title">securesmarthome.org</h2>
+                            <p class="card-text">My university dissertation project. A website teaching users how to set up a smart home securely. </p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-sm" href="https://securesmarthome.org/">Visit</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <a href="minipc.html">
+                        <img src="Images/PXL_20250317_111405146.jpg" class="card-img-top"> </a>
+                        <div class="card-body">
+                            <h2 class="card-title">Turning an £80 mini PC into a media beast</h2>
+                            <p class="card-text">Making an £80 mini PC bought on ebay into a privacy-respecting alternative to an Amazon Firestick.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-sm" href="minipc.html">More Info</a>
+                        </div>
+                    </div>
+                </div>
         </div>
         </div>
     </div>
-    <div>
+</div>
     </main>
         
 <!-- Footer -->

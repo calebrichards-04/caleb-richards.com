@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.css"> <!-- Link to your custom CSS -->
     <style>
+       <style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,24 +16,13 @@
 
         html, body {
             height: 100%;
-            margin: 0;
         }
-        
+
         body {
             display: flex;
             flex-direction: column;
-        }
-        
-        main {
-            flex: 1; /* This allows the main content to grow and take up available space */
-        }
-        
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px; /* Adjust padding for mobile */
-            margin-top: auto; /* Push the footer to the bottom */
+            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+            margin: 0; /* Remove default margin */
         }
 
         .container {
@@ -40,6 +30,20 @@
             flex-direction: column;
             gap: 5px; /* Adjust this value to control space between items */
         }
+
+
+        main {
+            flex: 1; /* This allows the main content to grow and take up available space */
+           
+
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px; /* Adjust padding for mobile */
+    }
                 
         /* Custom styles for black and blue theme */
         .bg-black {
@@ -62,7 +66,7 @@
         color: #007bff; /* Set default text color to blue */
         margin: 0;
         padding: 0;
-        }
+    }
         header {
             margin-bottom: 1px;
         }
@@ -76,10 +80,7 @@
             height: 200px; /* Set a fixed height */
             object-fit: cover; /* Ensure the image covers the area without distortion */
         }
-        .card {
-            margin-top: 0; /* Ensure there's no margin on top of the card */
-            padding: 10px; /* Adjust padding as needed */
-        }
+    
     </style>
 </head>
 <body>

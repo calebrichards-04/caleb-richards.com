@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects - Caleb Richards</title>
+    <title>Caleb Richards</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.css"> <!-- Link to your custom CSS -->
     <style>
@@ -14,25 +14,36 @@
         }
 
         html, body {
-            height: 100%; /* Full height for the body */
+            height: 100%;
         }
 
         body {
             display: flex;
-            flex-direction: column; /* Stack children vertically */
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+            margin: 0; /* Remove default margin */
         }
 
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px; /* Adjust this value to control space between items */
+        }
+
+
         main {
-            flex: 1; /* Allow main to grow and fill available space */
+            flex: 1; /* This allows the main content to grow and take up available space */
+           
+
         }
 
         footer {
             background-color: #333;
             color: white;
             text-align: center;
-            padding: 20px; /* Adjust padding for mobile */
-        }
-
+            padding: 15px; /* Adjust padding for mobile */
+    }
+                
         /* Custom styles for black and blue theme */
         .bg-black {
             background-color: #000000; /* Black */
@@ -50,21 +61,26 @@
         .navbar-nav .nav-link:hover {
             color: #0056b3; /* Darker blue on hover */
         }
-        .custom-paragraph {
-            font-size: 20px; /* Adjust the size as needed */
+        body {
+        color: #007bff; /* Set default text color to blue */
+        margin: 0;
+        padding: 0;
+    }
+        header {
+            margin-bottom: 1px;
         }
+    
+        .container {
+            padding-top: 0rem; /* Adjusted padding */
+        }
+    
         .card-img-top {
             width: 100%; /* Make the image take the full width of the card */
             height: 200px; /* Set a fixed height */
             object-fit: cover; /* Ensure the image covers the area without distortion */
         }
-        .card {
-            margin-top: 0; /* Ensure there's no margin on top of the card */
-            padding: 10px; /* Adjust padding as needed */
-        }
-    </style>
     
-   
+    </style>
 </head>
 <body>
 
@@ -99,64 +115,75 @@
             </div>
         </div>
     </nav>
-    <style>
-        .custom-paragraph {
-            font-size: 20px; /* Adjust the size as needed */
-        }
-    </style>
+
+    <!-- Header -->
+<header class="bg-grey text-white text-left py-5">
     <div class="container">
-    <div class="col-md-8">
-    <main class="container mt-5" style="padding-bottom: 20px;">
-        <h1 class="font-weight-bold display-4">Projects</h1>
-        <!-- Image Added Here -->
-        <div class="text-left">
-        <div class="gap"></div>
-        
-        <p class="text-blue custom-paragraph">Click on the cards below to view projects I am currently working on.</p>
-            <!-- Content Row -->
-            <div class="gap"></div>
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <a href="https://securesmarthome.org/">
-                        <img src="Images/smart-home-interface-with-augmented-realty-iot-object-interior-design_756748-3169-3896813610.jpg" class="card-img-top" > </a>
-                        <div class="card-body">
-                            <h2 class="card-title">securesmarthome.org</h2>
-                            <p class="card-text">My university dissertation project. A website teaching users how to set up a smart home securely. </p>
-                        </div>
-                        <div class="card-footer">
-                            <a class="btn btn-primary btn-sm" href="https://securesmarthome.org/">Visit</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <a href="minipc.html">
-                        <img src="Images/PXL_20250317_111405146.jpg" class="card-img-top"> </a>
-                        <div class="card-body">
-                            <h2 class="card-title">Turning an £80 mini PC into a media beast</h2>
-                            <p class="card-text">Making an £80 mini PC bought on ebay into a privacy-respecting alternative to an Amazon Firestick.</p>
-                        </div>
-                        <div class="card-footer">
-                            <a class="btn btn-primary btn-sm" href="minipc.html">More Info</a>
-                        </div>
-                    </div>
-                </div>
-        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-blue">Welcome to my website</h1>
+                <p class="lead text-blue">I am an aspiring cyber security professional. This website is dedicated to what skills I can offer, as well as my interests and a personal blog.</p>
+            </div>
         </div>
     </div>
-</div>
-    </main>
-        
-<!-- Footer -->
-<footer class="bg-black text-center py-3" style="margin-top: 20px;">
-    <p class="text-blue">&copy; 2025 Caleb Richards. All rights reserved.</p>
-</footer>
+</header>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Include Bootstrap JS -->
+    <!-- Main Content -->
+    <main class="container">
+             <!-- Content Row -->
+             <div class="row gx-4 gx-lg-5">
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <a href="projects.html">
+                        <img src="Images/Screenshot from 2025-03-13 18-11-19.png" class="card-img-top" > </a>
+                        <div class="card-body">
+                            <h2 class="card-title">Projects</h2>
+                            <p class="card-text">Projects I am currently working on.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-sm" href="projects.html">More Info</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <a href="interests.html">
+                        <img src="Images/PXL_20250312_132021690.jpg" class="card-img-top"> </a>
+                        <div class="card-body">
+                            <h2 class="card-title">My interests</h2>
+                            <p class="card-text">Cyber Security + Tech, Cars, Music</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-sm" href="interests.html">More Info</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <a href="blog.html">
+                        <img src="Images/PXL_20250308_162521063.jpg" class="card-img-top"> </a>
+                        <div class="card-body">
+                            <h2 class="card-title">Blog</h2>
+                            <p class="card-text">My personal blog. </p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-sm" href="blog.html">More Info</a>
+                        </div>
+                    </div>
+                </div>
+                
+                 
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-center py-3">
+        <p class="text-blue">&copy; 2025 Caleb Richards. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Include Bootstrap JS -->
 </body>
 </html>

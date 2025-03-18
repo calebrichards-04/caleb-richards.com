@@ -16,12 +16,23 @@
         html, body {
             height: 100%;
         }
-
+        
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
-            margin: 0; /* Remove default margin */
+        }
+        
+        main {
+            flex: 1; /* This allows the main content to grow and take up available space */
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px; /* Adjust padding for mobile */
+            margin-top: auto; /* Push the footer to the bottom */
         }
 
         .container {
@@ -31,18 +42,6 @@
         }
 
 
-        main {
-            flex: 1; /* This allows the main content to grow and take up available space */
-           
-
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px; /* Adjust padding for mobile */
-    }
                 
         /* Custom styles for black and blue theme */
         .bg-black {

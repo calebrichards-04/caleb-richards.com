@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Caleb Richards</title>
+    <title>Laptop buying guide - Caleb Richards</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.css"> <!-- Link to your custom CSS -->
     <style>
-        /* Flexbox styles for full height */
-        html, body {
+         html, body {
             height: 100%; /* Full height */
             margin: 0; /* Remove default margin */
             display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack children vertically */
+        }
+
+        /* Main content area */
+        .container {
+            flex: 1; /* Allow container to grow and fill space */
+            display: flex;
             flex-direction: column; /* Stack children vertically */
         }
 
@@ -20,7 +26,6 @@
             color: white;
             text-align: center;
             padding: 10px;
-            margin-top: auto; /* Push footer to the bottom */
         }
 
         /* Custom styles for black and blue theme */
@@ -45,10 +50,6 @@
         }
         header {
             padding-bottom: 0.2rem; /* Adjusted padding */
-        }
-        .container {
-            padding-top: 0.2rem; /* Adjusted padding */
-            flex: 1; /* Allow container to grow and fill space */
         }
         /* Additional styles for specific elements */
         h1, h2, h3, h4, p {
@@ -101,32 +102,30 @@
         }
     </style>
     <div class="container">
-    <div class="col-md-8">
-        <main class="container mt-5" style="padding-bottom: 20px;">
-            <h1 class="font-weight-bold display-4">CV</h1>
-            <!-- Image Added Here -->
-            <div class="text-left">
-                <div class="gap"></div>
-                <p class="text-blue custom-paragraph">This page contains my CV. Please use the "Download PDF" button below to view my CV. </p>
-                <div class="gap"></div>
-                <div class="gap"></div>
-                <p class="text-blue custom-paragraph">
-                    If you have any questions regarding my CV, don't hesitate to contact me. 
-                    Head to the 
-                    <a href="contact.html" style="text-decoration: underline; color: inherit;">contact</a> 
-                    section for my contact details.
-                </p>                
-                <div class="gap"></div>
-                <div class="gap"></div>
-                <p class="text-blue custom-paragraph">(Last updated 14/03/2025) </p>
-                <div class="gap"></div>
-                <div class="text-center mt-4">
-                    <a href="CV/Caleb Richards CV (Cyber version) final 130225.pdf" class="btn btn-primary text-blue" download>Download PDF</a>
-                </div>
+    <main class="container mt-5" style="padding-bottom: 20px;">
+        <div class="text-left">
+        <div class="gap"></div>
+        <div class="col-md-3"><br><p>Published: N/A</p></div>
+                <div class="col-md-3"><br><p>By: Caleb </p></div>
+            </div>
+ <!--Content-->
+        <div class="row">
+            <div class="col-lg-12">
+                <hr>
+                <h1>Page under construction...</h1>
+            </div>
+        </div>
+        <div class="col-md-8">
+        <h4>Introduction</h4>
+        <p class = "text-blue custom-paragraph" >Text </p>
+        <div class="gap"></div>
+
+
         </div>
         </div>
     </div>
-    <div>
+</div>
+</div>
     </main>
         
 <!-- Footer -->

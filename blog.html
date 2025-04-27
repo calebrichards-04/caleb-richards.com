@@ -3,10 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caleb Richards</title>
+    <title>Blog - Caleb Richards</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap.min.css"> <!-- Link to your custom CSS -->
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+            margin: 0; /* Remove default margin */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px; /* Adjust this value to control space between items */
+        }
+
+
+        main {
+            flex: 1; /* This allows the main content to grow and take up available space */
+           
+
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px; /* Adjust padding for mobile */
+    }
+                
         /* Custom styles for black and blue theme */
         .bg-black {
             background-color: #000000; /* Black */
@@ -30,20 +67,19 @@
         padding: 0;
     }
         header {
-            padding-bottom: 0.2rem; /* Adjusted padding */
+            margin-bottom: 1px;
         }
     
         .container {
-            padding-top: 0.2rem; /* Adjusted padding */
+            padding-top: 0rem; /* Adjusted padding */
         }
-
-         /* Additional styles for specific elements */
-    h1, h2, h3, h4, p {
-        color: #007bff; /* Ensure all headings and paragraphs are blue */
-    }
-        .footer-gap {
-        margin-top: 20px; /* Adjust the value as needed */
-    }
+    
+        .card-img-top {
+            width: 100%; /* Make the image take the full width of the card */
+            height: 200px; /* Set a fixed height */
+            object-fit: cover; /* Ensure the image covers the area without distortion */
+        }
+    
     </style>
 </head>
 <body>
@@ -79,49 +115,60 @@
             </div>
         </div>
     </nav>
-    <style>
-        .custom-paragraph {
-            font-size: 20px; /* Adjust the size as needed */
-        }
-    </style>
+
+    <!-- Header -->
+<header class="bg-grey text-white text-left py-5">
     <div class="container">
-    <div class="col-md-8">
-    <main class="container mt-5" style="padding-bottom: 20px;">
-        <h1 class="font-weight-bold display-4">Title</h1>
-        <!-- Image Added Here -->
-        <div class="text-left">
-        <div class="gap"></div>
-        
-            <h2 class="text-blue" style="text-decoration: bold;">Heading</h2>
-            <div class="gap"></div>
-            <p class="text-blue custom-paragraph">Text</p>
-            <div class="gap"></div>
-            <h4 class="text-left" style="text-decoration: underline;">Text</h4>
-            <h2 class="text-blue custom-paragraph">Text</h2>
-            <p class="lead text-center text-blue">List</p>
-            <ul class="list-group mt-4">
-                <li class="list-group-item text-blue">1. <strong>List:</strong> Example</li>
-                <li class="list-group-item text-blue">2. <strong>List</strong> Example</li>
-                <li class="list-group-item text-blue">3. <strong>List</strong> Example</li>
-                <li class="list-group-item text-blue">4. <strong>List</strong> Example</li>
-                <li class="list-group-item text-blue">5. <strong>List</strong> Example</li>
-            </ul>
-            <div class="gap"></div>
-        </div>
+        <div class="row justify-content-left">
+            <div class="col-md-8">
+                <h1 class="text-blue">Blog</h1>
+                <p class="lead text-blue">My personal blog on topics that interest me.</p>
+            </div>
         </div>
     </div>
-    <div>
-    </main>
-        
-<!-- Footer -->
-<footer class="bg-black text-center py-3" style="margin-top: 20px;">
-    <p class="text-blue">&copy; 2025 Caleb Richards. All rights reserved.</p>
-</footer>
+</header>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Include Bootstrap JS -->
+   <!-- Main Content -->
+   <main class="container">
+    <!-- Content Row -->
+    <div class="row gx-4 gx-lg-5">
+       <div class="col-md-4 mb-5">
+           <div class="card h-100">
+               <a href="carbuying.html" class="card" ></a>
+               <div class="card-body">
+                   <h2 class="card-title">Car buying guide</h2>
+                   <p class="card-text">My personal guide to buying a used car without being duped.</p>
+               </div>
+               <div class="card-footer">
+                   <a class="btn btn-primary btn-sm" href="carbuying.html">View</a>
+               </div>
+           </div>
+       </div>
+       
+       <div class="col-md-4 mb-5">
+           <div class="card h-100">
+               <a href="laptop.html" class="card"></a>
+               <div class="card-body">
+                   <h2 class="card-title">Budget laptop buying guide</h2>
+                   <p class="card-text">How to avoid consumer-class junk without breaking the bank!</p>
+               </div>
+               <div class="card-footer">
+                   <a class="btn btn-primary btn-sm" href="laptop.html">View</a>
+               </div>
+           </div>
+       </div>
+       
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-center py-3">
+        <p class="text-blue">&copy; 2025 Caleb Richards. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Include Bootstrap JS -->
 </body>
 </html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop buying guide</title>
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --cr-primary: #7a6ff0;   /* accent blue-purple */
+            --cr-accent: #ffb347;    /* warm accent (used for chip) */
+            --cr-bg: #070814;        /* dark page background */
+            --cr-surface: #101322;   /* navbar / hero / footer surface */
+            --cr-surface-soft: #181b2b; /* cards / panel surface */
+            --cr-text-main: #e5e7ef;
+            --cr-text-muted: #9ca3b5;
+            --cr-card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--cr-bg);
+            color: var(--cr-text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: var(--cr-surface);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--cr-text-main);
+        }
+
+        .navbar-brand span {
+            color: var(--cr-primary);
+        }
+
+        .navbar-brand:hover {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--cr-primary);
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 3.5rem 0 2.5rem;
+            background: radial-gradient(circle at top left, rgba(122,111,240,0.14), transparent 55%),
+                        var(--cr-surface);
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 4.5rem 0 3rem;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: rgba(122, 111, 240, 0.18);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--cr-primary);
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: var(--cr-primary);
+            box-shadow: 0 0 8px rgba(122,111,240,0.9);
+        }
+
+        .hero-title {
+            font-weight: 700;
+            font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title span {
+            color: var(--cr-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--cr-text-muted);
+            max-width: 36rem;
+        }
+
+        .hero-cta {
+            margin-top: 1.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .hero-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        /* Optional hero image / visual */
+        .hero-panel {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        .hero-panel h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--cr-text-main);
+        }
+
+        .hero-panel-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .hero-panel-list li::before {
+            content: "•";
+            color: var(--cr-primary);
+            margin-right: 0.35rem;
+        }
+
+        /* FEATURE SECTION */
+        .section-features {
+            padding: 1rem 0 3rem;
+        }
+
+        .section-heading {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-heading h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .feature-card {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            color: var(--cr-text-main);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(122, 111, 240, 0.7);
+            box-shadow: 0 14px 40px rgba(122, 111, 240, 0.3);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .feature-card-body {
+            padding: 1.2rem 1.2rem 0.6rem;
+        }
+
+        .feature-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .feature-card-text {
+            font-size: 0.95rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-card-footer {
+            padding: 0.85rem 1.2rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--cr-card-border);
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-chip {
+            background-color: rgba(255, 179, 71, 0.16);
+            color: #f4b565;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            background-color: var(--cr-primary);
+            border-color: var(--cr-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #655bf0;
+            border-color: #655bf0;
+        }
+
+        .btn-outline-secondary {
+            border-color: var(--cr-text-muted);
+            color: var(--cr-text-main);
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--cr-text-main);
+            color: #000;
+            border-color: var(--cr-text-main);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--cr-surface);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        footer p {
+            margin: 0;
+            padding: 0.9rem 0;
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Caleb <span>Richards</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_cv.html">CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects_new.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_interests.html">Interests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog_new.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_new.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+
+                    <h1 class="hero-title">
+                        How to buy a DECENT laptop on a budget<span>.
+                    </h1>
+
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <h2>What you’ll find here</h2>
+                        <ul class="hero-panel-list">
+                            <li>The problem with cheap Windows and Chrome OS laptops from places like Currys</li>
+                            <li>What you should buy instead</li>
+                            <li>Where to buy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container">
+    <div class="col-md-8">
+    <main class="container mt-5" style="padding-bottom: 20px;">
+        <div class="col-md-3"><br><p>Published: 12 May 2025</p></div>
+        <div class="text-left">
+        <div class="gap"></div>
+        
+        <h3>Introduction: The problem with the laptops you may buy in Currys</h3>
+        <p class = "text-blue custom-paragraph" >Now, you may go into Currys and be tempted by the £300 HP or Lenovo laptops that they sell. However these devices have some issues that make them utter junk in my opinion. </p>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >The first issue I'm going to talk about is the poor durability of these. Many of these consumer grade machines are known for badly designed hinges amongst other things, they are often not screwed into a sturdy enough place on the laptop. So after a year or so of usage, the hinge will probably fail rendering the laptop useless. </p>
+        <div class="gap"></div>
+        <p class="text-blue custom-paragraph">Salem Techsperts (a computer repair technician) on YouTube perfectly explains my point here: <a href="https://www.youtube.com/watch?v=NzRehSFWuKo&t=300s" style="text-decoration: underline; color: inherit;">https://www.youtube.com/watch?v=NzRehSFWuKo&t=300s</a> 
+        </p> 
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >As well as the durability problems, these consumer grade laptops often have less repair information (such as manuals) or parts readily avaliable. This means that when your Currys laptop breaks, there's less chance of you repairing it economically. </p>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >These cheap Currys laptops also suffer with performance problems. As they are offered at a low pricepoint, they are built to a cost. These laptops often use underpowered processors and have low amounts of memory (RAM, which is non-upgradable most of the time). </p>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >They are then made to run Windows which is a bloated, data collecting and inefficient operating system that these machines just cannot run well. It also doesnt help that these laptops often use slow storage which is low capacity (also non upgradable in most instances).</p>
+        <div class="gap"></div>
+        <h3>What about Chromebooks?</h3>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >Some of the cheap laptops you may see at Currys will have ChromeOS instead of Windows. Whilst these will perform better than a Windows equivalent due to less bloat, ChromeOS is really only designed for web browsing and word processing. </p>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >Chromebooks will still suffer from the same issues with low end processors, memory and storage. They also suffer from the same durability and repairability issues. As a result, I don't generally recommend them.  </p>
+        <div class="gap"></div>
+        <h3>What you should do instead: Buy a used, business grade laptop </h3>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >A business grade laptop are the kind of laptops that large companies buy (usually in bulk on a contract). These machines are considerably better in many ways. The build quality is MUCH better, these machines can generally last for years without any issues. Parts and repair manuals are also readily avaliable. Some examples of business grade laptops I'd recommend would be the Lenovo ThinkPad, Dell Latitude or HP Elitebook series of laptops. </p>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >Make sure that the machine you go for is a decent specification (if it is a ThinkPad, I'd recommend the T or P series). The machine should have an Intel i5 or i7 8th Gen processor or newer, at least 8GB of RAM and 256GB or larger SSD (NOT HDD) </p>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >Also, make sure you buy the machine from a reputable seller. I'd recommend using eBay due to its great buyer protection scheme. Check that the seller you are using has at least 98% positive feedback and that you fully read the item description. </p>
+        <div class="text-left">
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/Screenshot from 2025-05-12 12-51-04.png" class="img-fluid" style="width: 100%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#007bff ; text-align: left; width: 100%;">      </figcaption>
+            </figure>
+        </div>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >This is an example of what you should buy. This machine should last a person a long while. This laptop will be far more durable, upgradable, repairable and better performing than a consumer grade machine. These ThinkPads also offer great Linux support if you want to switch over from Windows (which has really gotten poor in recent years in my opinion. ) </p>
+        <div class="gap"></div>
+        <p class = "text-blue custom-paragraph" >Also note that this laptop only costs £224.99, undercutting a £300 Currys laptop!  </p>
+        <div class="gap"></div>
+        
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+    </main>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Caleb Richards. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

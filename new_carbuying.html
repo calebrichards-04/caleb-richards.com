@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car buying</title>
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --cr-primary: #7a6ff0;   /* accent blue-purple */
+            --cr-accent: #ffb347;    /* warm accent (used for chip) */
+            --cr-bg: #070814;        /* dark page background */
+            --cr-surface: #101322;   /* navbar / hero / footer surface */
+            --cr-surface-soft: #181b2b; /* cards / panel surface */
+            --cr-text-main: #e5e7ef;
+            --cr-text-muted: #9ca3b5;
+            --cr-card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--cr-bg);
+            color: var(--cr-text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: var(--cr-surface);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--cr-text-main);
+        }
+
+        .navbar-brand span {
+            color: var(--cr-primary);
+        }
+
+        .navbar-brand:hover {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--cr-primary);
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 3.5rem 0 2.5rem;
+            background: radial-gradient(circle at top left, rgba(122,111,240,0.14), transparent 55%),
+                        var(--cr-surface);
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 4.5rem 0 3rem;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: rgba(122, 111, 240, 0.18);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--cr-primary);
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: var(--cr-primary);
+            box-shadow: 0 0 8px rgba(122,111,240,0.9);
+        }
+
+        .hero-title {
+            font-weight: 700;
+            font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title span {
+            color: var(--cr-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--cr-text-muted);
+            max-width: 36rem;
+        }
+
+        .hero-cta {
+            margin-top: 1.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .hero-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        /* Optional hero image / visual */
+        .hero-panel {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        .hero-panel h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--cr-text-main);
+        }
+
+        .hero-panel-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .hero-panel-list li::before {
+            content: "•";
+            color: var(--cr-primary);
+            margin-right: 0.35rem;
+        }
+
+        /* FEATURE SECTION */
+        .section-features {
+            padding: 1rem 0 3rem;
+        }
+
+        .section-heading {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-heading h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .feature-card {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            color: var(--cr-text-main);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(122, 111, 240, 0.7);
+            box-shadow: 0 14px 40px rgba(122, 111, 240, 0.3);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .feature-card-body {
+            padding: 1.2rem 1.2rem 0.6rem;
+        }
+
+        .feature-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .feature-card-text {
+            font-size: 0.95rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-card-footer {
+            padding: 0.85rem 1.2rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--cr-card-border);
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-chip {
+            background-color: rgba(255, 179, 71, 0.16);
+            color: #f4b565;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            background-color: var(--cr-primary);
+            border-color: var(--cr-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #655bf0;
+            border-color: #655bf0;
+        }
+
+        .btn-outline-secondary {
+            border-color: var(--cr-text-muted);
+            color: var(--cr-text-main);
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--cr-text-main);
+            color: #000;
+            border-color: var(--cr-text-main);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--cr-surface);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        footer p {
+            margin: 0;
+            padding: 0.9rem 0;
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Caleb <span>Richards</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_cv.html">CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects_new.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_interests.html">Interests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog_new.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_new.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+
+                    <h1 class="hero-title">
+                        My personal car buying advice<span>.
+                    </h1>
+
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <h2>What you’ll find here</h2>
+                        <ul class="hero-panel-list">
+                            <li>My advice on car buying, based on experience and knowledge</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container">
+    <div class="col-md-8">
+    <main class="container mt-5" style="padding-bottom: 20px;">
+        <div class="col-md-3"><br><p>Published: 27 April 2025 </p></div>
+        <div class="text-left">
+        <h4>Introduction</h4>
+        <p class = "text-white custom-paragraph" >Being into cars, people have often asked me what secondhand car they should buy. This blog post aims to document my personal advice.</p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >DISCLAIMER: These opinions are formed from my own experiences and my friends' ownership experiences. What works for you, works for you. </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Now, I am going to break this down into sections: what to look out for when buying a car, buying types and dispelling some common myths.</p>
+        <div class="gap"></div>
+        <h4>What to look out for when buying a car (secondhand)</h3>
+        <p class = "text-white custom-paragraph" >I have fond memories of watching Wheeler Dealers with my dad when I was young. This is where I infact learnt most of what I know! As well as my own experiences of course. </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >You can use sites such as Auto Trader, Ebay, Gumtree or Facebook Marketplace to find secondhand cars. Although be weary of potential scams (particularly on FB Marketplace). If it's too good to be true, it probably is!</p>
+        <div class="gap"></div>
+        <h4>General conditon of the car, milage, service history</h4>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >I will ALWAYS suggest looking at a car in person. I do not like the idea of online dealers such as Cinch. I know you can return them and having a car delivered to your door is convenient, but it is generally advised to not buy a car sight unseen, never fully trust the seller. There has been cases where online dealers have not let people test drive a car unless they commit to buy it, a big no-no if you ask me. I have also had friends use these online dealers, just to be duped with knackered engines etc. </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >That being said, now you've arrived at the dealer/private sellers home, lets go over some things to check:</p>
+        <ul class="list-group mt-4" style="margin-bottom: 20px;">
+            <li class="list-group-item text-blue"><strong>Bodywork/Exterior:</strong>  Check that the paintwork is shiny and has minimal scratches. All panel gaps (e.g. the gap between the door and the wings) should be consistent across the car, if not there is a chance this is a sign of accident damage. Make sure that there is no rust and that all doors etc open and close as they should. Check the tires; make sure they arent cracked or flat, have plenty of tread and arent too old. </li>
+            <li class="list-group-item text-blue"><strong>Interior:</strong>  Make sure every knob and switch works as expected, test literally everything. Make sure the seats are not stained or torn, retrimming seats is pricey. Also make sure that all seatbelts work and are not damaged. In addition, make sure there are no warning lights on the dash when the car is running. </li>
+            <li class="list-group-item text-blue"><strong>Under the bonnet:</strong> When you go to view a car, make sure the engine isnt already warm, this could mean the seller is hiding something dodgy. Check all fluid levels and make sure they are correct and are a good colour. Engine oil should be a golden brown colour, and the level should be between the min and max marks on the dipstick/digital readout. Coolant can be red, green or blue and should also be between the min and max marks. When the engine is running, it should sound sweet as a nut. Make sure there are no rattling or whining noises. Ask to see the service history, if no service history, walk away. I'll touch more on this later.  </li>
+            <li class="list-group-item text-blue"><strong>On the road:</strong> The car should feel tight through the corners. Make sure the engine delivers strong power and that the car goes through all the gears smoothly. The brake pedal should be firm and not have loads of travel, make sure the brakes stop the car on a sixpence and that it doesnt pull to one side. Make sure the car rides properly, and that there are no mechanical clunks or rattles when you go over bumps or on full steering lock. Also, if the car has power assisted steering, make sure the steering doesnt feel heavy.  </li> 
+        </ul>
+        <div class="gap"></div>
+        <h4>What's more important? Mileage or Service history? </h4>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Now, there is a common myth that low mileage = better condition. This is NOT true.</p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Service history is far, far, far more important than mileage. A car will always be in good condition if it is maintained properly and well cared for. Lets say you have two cars, one has 50k miles on the clock, the other has 100k miles. You'd automatically be more inclined to chose the 50k one, right? Well what if the 100k mile car had full dealer service history and all maintenance carried out, whilst the 50k mile car hadnt even had an oil change in 2 years? More than likely the 50k mile car will leave you on the side of the road waiting for the AA..</p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >When looking for a car, make sure it has full service history (or FSH as some adverts list it). I would also advise checking the MOT history (search MOT history DVLA using your search engine and click the gov.uk link) to make sure any advisories have been rectified, and this also gives you an idea if a cars been cared for or not.  </p>
+        <div class="gap"></div>
+        <h4>Buying types: Cash vs finance </h4>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Finally, I am going to cover different buying types and my recommendations.</p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >This will largely depend on your situation and requirements for a car. However, I am NOT a financial advisor, this is just my opinion.</p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >When it comes to someones first car, I cringe hard when someone finances a new £20k "econobox". As they are a new driver, they are more than likely going to scuff it up in some way. Not to mention that they will likely be getting a rubbish finance deal with high interest and will have to pay a balloon payment if they want to keep their average car (which will lose lots of its value over the finance period). I would recommend getting a good used car for £3k or less as a new driver, not only will it be less painful if you do bump it, it will be much kinder to your wallet too! </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >However, similar principles can be applied for your second or third car (although going over 3k is okay). If you need a practical car to get you to work and back, I would not generally recommend financing due to how expensive new (or even less than 3 years old) cars are these days. A used Volvo Estate for the family, or a used Honda Civic will be far better options. Not only will you most likely get more car for your money, you will also not be burdened with a car payment. This can be a large contributor to debt. Not to mention, actually owning something means you can do what you like with it! </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >I would only ever recommend financing if you are buying an exotic car (i.e. a Ferrari or Lamborghini), you insist on getting a brand new car (this is generally a bad idea due to depriciation) or you are certain depreciation won't be an issue for the car you are buying.  </p>
+        <div class="gap"></div>
+
+
+        
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+    </main>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Caleb Richards. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

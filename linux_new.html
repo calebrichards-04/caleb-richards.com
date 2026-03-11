@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switching to Linux</title>
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --cr-primary: #7a6ff0;   /* accent blue-purple */
+            --cr-accent: #ffb347;    /* warm accent (used for chip) */
+            --cr-bg: #070814;        /* dark page background */
+            --cr-surface: #101322;   /* navbar / hero / footer surface */
+            --cr-surface-soft: #181b2b; /* cards / panel surface */
+            --cr-text-main: #e5e7ef;
+            --cr-text-muted: #9ca3b5;
+            --cr-card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--cr-bg);
+            color: var(--cr-text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: var(--cr-surface);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--cr-text-main);
+        }
+
+        .navbar-brand span {
+            color: var(--cr-primary);
+        }
+
+        .navbar-brand:hover {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--cr-primary);
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 3.5rem 0 2.5rem;
+            background: radial-gradient(circle at top left, rgba(122,111,240,0.14), transparent 55%),
+                        var(--cr-surface);
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 4.5rem 0 3rem;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: rgba(122, 111, 240, 0.18);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--cr-primary);
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: var(--cr-primary);
+            box-shadow: 0 0 8px rgba(122,111,240,0.9);
+        }
+
+        .hero-title {
+            font-weight: 700;
+            font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title span {
+            color: var(--cr-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--cr-text-muted);
+            max-width: 36rem;
+        }
+
+        .hero-cta {
+            margin-top: 1.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .hero-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        /* Optional hero image / visual */
+        .hero-panel {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        .hero-panel h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--cr-text-main);
+        }
+
+        .hero-panel-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .hero-panel-list li::before {
+            content: "•";
+            color: var(--cr-primary);
+            margin-right: 0.35rem;
+        }
+
+        /* FEATURE SECTION */
+        .section-features {
+            padding: 1rem 0 3rem;
+        }
+
+        .section-heading {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-heading h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .feature-card {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            color: var(--cr-text-main);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(122, 111, 240, 0.7);
+            box-shadow: 0 14px 40px rgba(122, 111, 240, 0.3);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .feature-card-body {
+            padding: 1.2rem 1.2rem 0.6rem;
+        }
+
+        .feature-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .feature-card-text {
+            font-size: 0.95rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-card-footer {
+            padding: 0.85rem 1.2rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--cr-card-border);
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-chip {
+            background-color: rgba(255, 179, 71, 0.16);
+            color: #f4b565;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            background-color: var(--cr-primary);
+            border-color: var(--cr-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #655bf0;
+            border-color: #655bf0;
+        }
+
+        .btn-outline-secondary {
+            border-color: var(--cr-text-muted);
+            color: var(--cr-text-main);
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--cr-text-main);
+            color: #000;
+            border-color: var(--cr-text-main);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--cr-surface);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        footer p {
+            margin: 0;
+            padding: 0.9rem 0;
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Caleb <span>Richards</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_cv.html">CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects_new.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_interests.html">Interests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog_new.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_new.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+
+                    <h1 class="hero-title">
+                        Switching to Linux<span>.
+                    </h1>
+
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <h2>What you’ll find here</h2>
+                        <ul class="hero-panel-list">
+                            <li>The end of Windows 10 and problems with 11</li>
+                            <li>How to switch</li>
+                            <li>Where you turn for support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container">
+    <div class="col-md-8">
+    <main class="container mt-5" style="padding-bottom: 20px;">
+        <div class="col-md-3"><br><p>Published: 27 July 2025 (updated 11 March 2026)</p></div>
+        <div class="text-left">
+        <div class="gap"></div>
+        <h3>Introduction: Windows 10 is dead, and the problems with recent Windows, including 11.</h3>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Windows 10 reached EOL (End of Life) in October 2025, this means it will not get updates anymore, including security ones. This means your computer will not be patched when future vulnerabilities are discovered. This means staying on Windows 10 will leave your PC vulnerable!! </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Now, Windows in recent years has really suffered a degredation in quality in my opinion, with 11 being stuffed full with ads, bloatware (unecessary rubbish) and spyware. One notable example has been Windows Recall, this co-pilot+ PC only feature (but you can bet it'll be rolled out further later!) spys on you by taking screenshots of your PC every 30 seconds for "your convenience". </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >The "Ahum Akctually" brigade will be piping up at this point to tell me the screenshots are encrypted and its all processed locally.. and whilst thats true, I still believe this feature is beyond creepy. I do not want my computer taking screenshots of EVERYTHING i do, and this is just one example. Microsoft in recent years has also primarily made money through data and advertising, so why should they be trusted to keep your digital life private? (which they don't).</p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Windows 11 also has high system requirements. Requiring a TPM 2.0 chip and double the RAM (Memory) of most Linux distributions. TPM 2.0 is generally only supported on PCs built around 2017/18 or newer. Many people still have PCs made before 2017, this means Microsoft has confined millions of still very capable machines to landfill with Windows 11. </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Or have they? With Linux, you can make your PC last longer, whilst making it more secure/private and perform better!  </p>
+        <div class="gap"></div>
+        <div class="text-left">
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/Screenshot from 2025-07-08 23-03-06.png" class="img-fluid" style="width: 85%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#e5e7ef ; text-align: left; width: 100%;">Microsofts website, highlighting when Windows 10 support ends. </figcaption>
+            </figure>
+        </div>
+        <div class="gap"></div>
+        <h3>What is Linux? and why you should switch to it?</h3>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Unlike Windows, Linux is not a singular operating system, rather it is a kernel (the thing that makes your OS talk to the PC itself). There are many different distributions (or distros for short) avaliable, meaning there's probably a flavour of Linux that can serve your needs perfectly.  </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Theres a good chance the Linux distro you choose will not have the spyware, bloatware and ad junk like Windows does. Linux also needs far less powerful computers to run, if your computer was made in the last 15 years, theres a good chance it'll run Linux well.   </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >As most Linux distros are nowhere near as bloated as Windows, there is a good chance you will notice your PC feels faster than it did on windows. Also, Linux is not as heavily targeted by hackers as Windows is, so if good practices are followed, a Linux experience can be more secure than a Windows one. Also, as it's not filled with Microsoft spyware and AI slop, it'll also respect your digital privacy. </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >In recent years, Linux has seen massive improvements in general usability. You could totally swap Microsoft Office for Libre Office and Windows 11 for Linux Mint, the change would not be as radical as you think! Also, thanks to Steam's proton (A compatibility app that comes with Steam, it allows Windows games to run. The Steam deck uses it!) you can even play a decent number of games on Linux! </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Linux is also what we call open source. This means the code is avaliable for public viewing, this is certainly not the case for Windows. With open source, we can see how exactly our OS is being made, so the creators can be challenged if something isn't right. It also means software can be audited by specialist individuals to check if its really up to scratch. </p>
+        <div class="gap"></div>
+        <h3>How to switch:</h3>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >First of all we are going to need to chose a distribution of Linux to replace Windows with. I recommend doing what I did and go with the standard version of Linux Mint Cinnamon (maybe Linux Mint XFCE if your machine is really old). Mint is familliar, it has a similar layout to Windows 10, its much lighterweight than Windows whilst still having features you actually want (Libre Office is pre-installed), theres plenty of community support, and its just low hassle. You can download an ISO image file at: <a href="https://www.linuxmint.com/download.php" style="text-decoration: underline; color: inherit;">https://www.linuxmint.com/download.php</a> 
+        </p> 
+        <div class="gap"></div>
+        <div class="text-left">
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/Screenshot from 2025-07-16 22-55-41.png" class="img-fluid" style="width: 80%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#e5e7ef ; text-align: left; width: 100%;"></figcaption>
+            </figure>
+        </div>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >You are also going to need a USB stick, I'd recommend one with at least 32 or 64GB of capacity. Chances are you have one already (if you aren't using it for something else!). If not, you can buy one from just about anywhere. Your local supermarket, eBay, Amazon etc all sell USB sticks these days and are cheap enough.  </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Next, download Rufus onto your Windows PC. This can be downloaded from: <a href="https://rufus.ie/en/" style="text-decoration: underline; color: inherit;">https://rufus.ie/en/.</a> This is simply the best USB flashing software if you're on Windows, by far. You simply select your linux mint ISO, select your USB drive and click "start"! </p>
+        <div class="gap"></div>
+        <div class="text-left">
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/screenshot1_en-1297036303.png" class="img-fluid" style="width: 60%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#e5e7ef ; text-align: left; width: 100%;"></figcaption>
+            </figure>
+        </div>
+        <p class = "text-white custom-paragraph" >We then need to actually install Mint onto the computer. Firstly, (after plugging in the USB) we will have to go into the BIOS, this is done (on most computers) by spamming the delete or F2 key on startup. You will then need to disable "secure boot" found in the security section of your BIOS. Secure boot is primarily designed for Windows, and has been known to cause issues with other operating systems.   </p>
+        <div class="gap"></div>
+        <div class="text-left">
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/secure-boot-1-2065484332.jpg" class="img-fluid" style="width: 80%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#e5e7ef ; text-align: left; width: 100%;"></figcaption>
+            </figure>
+        </div>
+        <p class = "text-white custom-paragraph" >Then we need to tell the computer to boot from the USB, otherwise it will probably try and boot into Windows. This is done by navigating to the boot section of your BIOS, and finding the model of your USB from the list of devices. Simply set this as the priority device, and then we can begin installing. </p>
+        <div class="text-left">
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/4-fixed-boot-order-priorities-3527242056.jpg" class="img-fluid" style="width: 80%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#e5e7ef ; text-align: left; width: 100%;"></figcaption>
+            </figure>
+        </div>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Once the computer has booted into the USB. The installation is pretty simple, just follow the prompts in the setup window! </p>
+        <div class="text-left">
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/Screenshot from 2025-07-20 11-10-26.png" class="img-fluid" style="width: 100%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#e5e7ef ; text-align: left; width: 100%;"></figcaption>
+            </figure>
+        </div>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Once done, your new desktop will look something like this: </p>
+        <div class="text-left">
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/Screenshot from 2025-07-20 11-36-55.png" class="img-fluid" style="width: 100%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#e5e7ef ; text-align: left; width: 100%;"></figcaption>
+            </figure>
+        </div>
+        <div class="gap"></div>
+        <h3>Getting to grips with Linux and the business of apps:</h3>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >In recent years, the avaliability of familliar apps and open source alternatives has massively improved. Many apps you may use such as your favourite browser, messaging apps, and media apps are likely on Linux. If they are not, open source alternatives are certainly getting good.</p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >You can totally use Libre Office and your browser of choice on a distro such as Mint, and your workflow wouldn't really be as different as you may think. Sure it may be a little different at first, but with time you will get used to it. Most apps you might need can be downloaded (using  Mint as an example) through the application manager. If not, you may be able to go to the companies website, and simply copy commands into the terminal. You can even type, using Mint as an example, sudo apt install {app} if you know the package name.</p>
+        <div class="gap"></div>
+        <figure style="display: inline-block; max-width: 90%; margin: 0;">
+            <img src="Images/Screenshot from 2025-07-20 11-12-58.png" class="img-fluid" style="width: 70%; height: auto;">
+            <figcaption class="mt-2" style="font-size: 0.9rem; color:#e5e7ef ; text-align: left; width: 100%;">The Linux Mint software manager (app store).</figcaption>
+            </figure>
+        </div>
+        <h4>Gaming</h4>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >A decade ago, gaming on Linux was effectively a no-go. However, a lot has changed since then. These days you can a growing amount of titles on Linux, even big name games such as Marvel Rivals can now be played on Linux. This is largely thanks to Steam's proton. This is a compitability layer that the Steam Deck uses, which allows Window's games to run.  </p>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >Whilst there are some titles which sadly don't run due to anticheat issues such as Fortnite or newer Call of Duty titles. However, gaming on Linux is very much possible these days, and protonDB <a href="https://www.protondb.com/" style="text-decoration: underline; color: inherit;">(https://www.protondb.com/) </a> is a very useful place for letting you know what works and what doesn't, plus it lists simple tweaks required to get games working.  </p>
+        <div class="gap"></div>
+        <h3>Where do I turn for support?</h3>
+        <div class="gap"></div>
+        <p class = "text-white custom-paragraph" >The beauty of pretty much any Linux distro is that there is great community support, which can help fix any issue you may have. You can also turn to places like Reddit, or even ask chatGPT (although be careful of what data you give to chatGPT, and take what it tells you with a pinch of salt). I personally prefer to use the distro's official forums/community pages.  </p>
+        <div class="gap"></div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+    </main>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Caleb Richards. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

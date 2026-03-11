@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini PC</title>
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --cr-primary: #7a6ff0;   /* accent blue-purple */
+            --cr-accent: #ffb347;    /* warm accent (used for chip) */
+            --cr-bg: #070814;        /* dark page background */
+            --cr-surface: #101322;   /* navbar / hero / footer surface */
+            --cr-surface-soft: #181b2b; /* cards / panel surface */
+            --cr-text-main: #e5e7ef;
+            --cr-text-muted: #9ca3b5;
+            --cr-card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--cr-bg);
+            color: var(--cr-text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: var(--cr-surface);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--cr-text-main);
+        }
+
+        .navbar-brand span {
+            color: var(--cr-primary);
+        }
+
+        .navbar-brand:hover {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--cr-primary);
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 3.5rem 0 2.5rem;
+            background: radial-gradient(circle at top left, rgba(122,111,240,0.14), transparent 55%),
+                        var(--cr-surface);
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 4.5rem 0 3rem;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: rgba(122, 111, 240, 0.18);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--cr-primary);
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: var(--cr-primary);
+            box-shadow: 0 0 8px rgba(122,111,240,0.9);
+        }
+
+        .hero-title {
+            font-weight: 700;
+            font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title span {
+            color: var(--cr-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--cr-text-muted);
+            max-width: 36rem;
+        }
+
+        .hero-cta {
+            margin-top: 1.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .hero-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        /* Optional hero image / visual */
+        .hero-panel {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        .hero-panel h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--cr-text-main);
+        }
+
+        .hero-panel-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .hero-panel-list li::before {
+            content: "•";
+            color: var(--cr-primary);
+            margin-right: 0.35rem;
+        }
+
+        /* FEATURE SECTION */
+        .section-features {
+            padding: 1rem 0 3rem;
+        }
+
+        .section-heading {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-heading h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .feature-card {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            color: var(--cr-text-main);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(122, 111, 240, 0.7);
+            box-shadow: 0 14px 40px rgba(122, 111, 240, 0.3);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .feature-card-body {
+            padding: 1.2rem 1.2rem 0.6rem;
+        }
+
+        .feature-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .feature-card-text {
+            font-size: 0.95rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-card-footer {
+            padding: 0.85rem 1.2rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--cr-card-border);
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-chip {
+            background-color: rgba(255, 179, 71, 0.16);
+            color: #f4b565;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            background-color: var(--cr-primary);
+            border-color: var(--cr-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #655bf0;
+            border-color: #655bf0;
+        }
+
+        .btn-outline-secondary {
+            border-color: var(--cr-text-muted);
+            color: var(--cr-text-main);
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--cr-text-main);
+            color: #000;
+            border-color: var(--cr-text-main);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--cr-surface);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        footer p {
+            margin: 0;
+            padding: 0.9rem 0;
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Caleb <span>Richards</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_cv.html">CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects_new.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_interests.html">Interests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog_new.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_new.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+
+                    <h1 class="hero-title">
+                        Turning an £80 Mini PC into a Home Theatre Beast<span>.
+                    </h1>
+
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <h2>What you’ll find here</h2>
+                        <ul class="hero-panel-list">
+                            <li>The PC</li>
+                            <li>How I built this into a home theatre PC</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+    <div class="container">
+    <div class="col-md-8">
+    <main class="container mt-5" style="padding-bottom: 20px;">
+        <div class="text-left">
+        <div class="gap"></div>
+            <h2 class="text-blue" style="text-decoration: bold;">The PC</h2>
+            <div class="gap"></div>
+            <div class="text-center">
+                <img src="Images/PXL_20250317_111405146.jpg" class="img-fluid" style="width: 60%; height: auto;">
+            </div>
+            <div class="gap"></div>
+            <p class="text-blue custom-paragraph">This HP ProDesk 400 G3 mini PC was found on ebay for £80. Sadly this didnt include RAM or storage, but 16GB of DDR4 and a 240GB SATA SSD was picked up at CEX (as well as a wifi module on ebay) for around £35.</p>
+            <div class="gap"></div>
+            <h2 class="text-blue" style="text-decoration: bold;">Specs</h2>
+            <ul class="list-group mt-4">
+                <li class="list-group-item text-blue"><strong>CPU:</strong> Intel i5-7500T</li>
+                <li class="list-group-item text-blue"><strong>RAM:</strong> 16GB DDR4 2400mhz </li>
+                <li class="list-group-item text-blue"><strong>Storage:</strong> 240gb SATA SSD</li>
+                <li class="list-group-item text-blue"><strong>OS:</strong> Linux Mint LMDE6</li>
+                
+            </ul>
+            <div class="gap"></div> 
+            <h2 class="text-blue" style="text-decoration: bold;">Why choose this over an Amazon Firestick/Smart TV apps?</h2>
+            <div class="gap"></div>
+            <p class="text-blue custom-paragraph">The Amazon Fire TV devices have been known to record enormous amounts of data about you (Mozilla Foundation, 2022). They collect information to target advertising. This includes: Shopping habits, TV shows and films watched, when you control smart devices (e.g. locks), name, phone number, age, address, gender, the list goes on. This is therefore not good for privacy at all.  </p>
+            <div class="gap"></div> 
+            <p class="text-white custom-paragraph">Similarly, Smart TVs have been known to sell your data to third parties by default. LG, one of the most popular TV brands, has a setting which (by default) sells data collected by its G3 OLED TV to third parties (Consumer Action Taskforce wiki, 2025). You have to manually opt out of this, and therefore this is also a privacy nightmare. Cyber security experts have recommended that smart TVs are not connected to the internet for privacy reasons such as this. </p>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">Using a linux-equipped mini PC instead allows for greater control and better privacy. It allows for easier implementation of ad-blocking, cookie deleting and privacy enabling software, improving the content consumption experience without being tied to subscriptions for everything or telemetry. The much larger amount of internal storage a mini PC can offer means there is more versatility too. You can easily add one or two 1TB/2TB SSDs to these and play local music/videos. You can also use these machines as a media server thanks to services such as Plex or Jellyfin.  </p>
+            <div class="gap"></div>
+            <h2 class="text-white" style="text-decoration: bold;">Why I chose to use Linux Mint LMDE6 over Windows</h2>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">I chose Linux Mint for this PC as I believe it is the best linux distribution for daily use. Mint has great ease of use, and great software compatbility which makes it perfect for this application. </p>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">Mint is also not bloated like Windows is, so it is a more lightweight and snappier OS. It also does not contain telemetry features like Windows does, making it a more privacy-respecting option than Windows. As well as this, Windows 11 only supports 8th Gen intel CPUs or newer, and this mini PC being a 7th gen, it is not officially supported despite being capable of running it. This move by Microsoft is purely to drive sales of new machines (in my opinion), which will confine many usable machines to landfill, when Windows 10 is dropped from support in October 2025. </p>
+            <div class="gap"></div>
+            <h2 class="text-white" style="text-decoration: bold;">My solution for a TV remote</h2>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">A challenge when doing this was to find a way of using the PC like how you would use a remote on a firestick or smart TV. The simplest solution was to use the Logitech K400 wireless keyboard. This has a built in touch pad, and connects seamlessly thanks to Solaar. Whilst abit more cumbersome than a remote, it works fairly well. These keyboards can be found on ebay for around £25. </p>
+            <div class="gap"></div>
+            <h2 class="text-white" style="text-decoration: bold;">What I used to get ad-free streaming</h2>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">I primarily used Brave Web Browser. This is a privacy-respecting browser based on chromium which allows extensions to be added to block ads. Below I have listed all the extensions used, all of these are avaliable in Brave's web store: </p>
+            <ul class="list-group mt-4">
+                <li class="list-group-item text-black"><strong>Ublock Origin:</strong> This is my adblocker of choice. It just works. It makes streaming content far more enjoyable.</li>
+                <li class="list-group-item text-black"><strong>Privacy Badger:</strong> This blocks trackers on sites.</li>
+                <li class="list-group-item text-black"><strong>I still don't care about cookies:</strong> This is a tool that blocks/deletes cookies and the annoying pop-ups when you visit sites these days.</li>
+                <li class="list-group-item text-black"><strong>Cookie Auto Delete:</strong> This does what it says on the tin really, deletes cookies after you close a tab down.</li>
+                <li class="list-group-item text-black"><strong>DuckDuckGo Privacy Essentials:</strong> A group of privacy tools by DuckDuckGo.</li>
+            </ul>
+            <div class="gap"></div>
+            <h2 class="text-white" style="text-decoration: bold;">Setting the device up for streaming</h2>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">Once the browser extensions were in place, it was simply a case of adding the streaming sites to the bookmarks on brave for easy access. I also added shortcuts to the mint desktop so streaming sites can be accessed by one click, just like on a firestick. </p>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">To improve privacy further, for free with ads-type streaming platforms, I created accounts with disposable email addresses (tempmail.org works well for this) and strong passwords (100+ bit entropy). This is so that the companies cannot spam my real inbox with promotional junk, and that my real email address isnt exposed should they suffer a data breach. I also added fake addresses (but still within the correct county so regional programs can still be viewed) for the same reason. </p>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">Once this was done, it was simply a case of plugging the mini PC in under the TV (inc. an aux cable plugged into the PCs headphone jack for sound) and it is good to go!</p>
+            <div class="gap"></div>
+            <h2 class="text-white" style="text-decoration: bold;">This makes a great device for local files too!</h2>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">Thanks to the relatively modern i5 in this machine, it is capable of playing high quality bitrate, high resolutuion films and TV locally. I personally use Kodi in this instance, as it gives a more TV-friendly user interface. Handy if you sit far away from the TV. As this device supports both a SATA and NVME drive, there is lots of internal storage that can added to this machine (literal Terabytes!)  </p>
+            <div class="gap"></div>
+            <h2 class="text-white" style="text-decoration: bold;">Conclusion</h2>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">Whilst this solution is more expensive than a firestick would be, coming to £140 all in, I believe it is a much better and privacy-respecting way of viewing content on your TV. I would highly recommend picking a machine like this up and doing the same.</p>
+            <div class="gap"></div>
+            <h2 class="text-white" style="text-decoration: bold;">References</h2>
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph"><a href="https://foundation.mozilla.org/en/privacynotincluded/amazon-fire-tv/" style="text-decoration: underline; color: inherit;">https://foundation.mozilla.org/en/privacynotincluded/amazon-fire-tv/</a> 
+            </p>         
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph"><a href="https://wiki.rossmanngroup.com/wiki/LG_Television_sale_of_personal_data" style="text-decoration: underline; color: inherit;">https://wiki.rossmanngroup.com/wiki/LG_Television_sale_of_personal_data</a> 
+            </p>  
+            <div class="gap"></div>
+            <p class="text-white custom-paragraph">Special thanks to Alex for introducing me to the browser extensions used in this! <a href="https://www.cyberalex.uk/extensions.html" style="text-decoration: underline; color: inherit;">https://www.cyberalex.uk/extensions.html</a> 
+            </p>   
+            <div class="gap"></div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+    </main>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Caleb Richards. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

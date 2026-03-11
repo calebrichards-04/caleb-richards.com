@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caleb Richards</title>
+
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --cr-primary: #7a6ff0;   /* accent blue-purple */
+            --cr-accent: #ffb347;    /* warm accent (used for chip) */
+            --cr-bg: #070814;        /* dark page background */
+            --cr-surface: #101322;   /* navbar / hero / footer surface */
+            --cr-surface-soft: #181b2b; /* cards / panel surface */
+            --cr-text-main: #e5e7ef;
+            --cr-text-muted: #9ca3b5;
+            --cr-card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--cr-bg);
+            color: var(--cr-text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: var(--cr-surface);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--cr-text-main);
+        }
+
+        .navbar-brand span {
+            color: var(--cr-primary);
+        }
+
+        .navbar-brand:hover {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: var(--cr-primary);
+        }
+
+        .navbar-nav .nav-link.active {
+            color: var(--cr-primary);
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 3.5rem 0 2.5rem;
+            background: radial-gradient(circle at top left, rgba(122,111,240,0.14), transparent 55%),
+                        var(--cr-surface);
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 4.5rem 0 3rem;
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: rgba(122, 111, 240, 0.18);
+            border-radius: 999px;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--cr-primary);
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: var(--cr-primary);
+            box-shadow: 0 0 8px rgba(122,111,240,0.9);
+        }
+
+        .hero-title {
+            font-weight: 700;
+            font-size: clamp(2rem, 3vw + 1rem, 2.6rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-title span {
+            color: var(--cr-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--cr-text-muted);
+            max-width: 36rem;
+        }
+
+        .hero-cta {
+            margin-top: 1.75rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .hero-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        /* Optional hero image / visual */
+        .hero-panel {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            font-size: 0.9rem;
+            color: var(--cr-text-muted);
+        }
+
+        .hero-panel h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--cr-text-main);
+        }
+
+        .hero-panel-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .hero-panel-list li::before {
+            content: "•";
+            color: var(--cr-primary);
+            margin-right: 0.35rem;
+        }
+
+        /* FEATURE SECTION */
+        .section-features {
+            padding: 1rem 0 3rem;
+        }
+
+        .section-heading {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-heading h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--cr-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .feature-card {
+            background-color: var(--cr-surface-soft);
+            border-radius: 1.25rem;
+            border: 1px solid var(--cr-card-border);
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            text-decoration: none;
+            color: var(--cr-text-main);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(122, 111, 240, 0.7);
+            box-shadow: 0 14px 40px rgba(122, 111, 240, 0.3);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .feature-card-body {
+            padding: 1.2rem 1.2rem 0.6rem;
+        }
+
+        .feature-card-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .feature-card-text {
+            font-size: 0.95rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-card-footer {
+            padding: 0.85rem 1.2rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--cr-card-border);
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+
+        .feature-chip {
+            background-color: rgba(255, 179, 71, 0.16);
+            color: #f4b565;
+            padding: 0.15rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            background-color: var(--cr-primary);
+            border-color: var(--cr-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #655bf0;
+            border-color: #655bf0;
+        }
+
+        .btn-outline-secondary {
+            border-color: var(--cr-text-muted);
+            color: var(--cr-text-main);
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--cr-text-main);
+            color: #000;
+            border-color: var(--cr-text-main);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--cr-surface);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        footer p {
+            margin: 0;
+            padding: 0.9rem 0;
+            font-size: 0.85rem;
+            color: var(--cr-text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Caleb <span>Richards</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_cv.html">CV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects_new.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="new_interests.html">Interests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog_new.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact_new.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+
+                    <h1 class="hero-title">
+                        My Interests<span>.
+                    </h1>
+
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="hero-panel">
+                        <h2>What you’ll find here</h2>
+                        <ul class="hero-panel-list">
+                            <li>My various interests including cars, tech, and audio equipment</li>
+                            <li>Overview of how I got into cyber security</li>
+                            <li>What I wanna do next</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+    <div class="col-md-8">
+        <main class="container mt-5" style="padding-bottom: 20px;">
+            <!-- Image Added Here -->
+            <div class="text-left">
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >This page talks about myself in abit more detail. I will be going over what my interests are, how I first got interested in them and where I want to go in the future with them.</p>
+                <div class="gap"></div>
+                <h3>Cars</h3>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >I've been into cars from a very young age. I can remember being obsessed (much to my dad's annoyance :D) with the first Pixar Cars film. Not much later than this, my dad and I would watch Top Gear and Wheeler Dealers together when I was younger. Over the years, I've also been to my fair share of car shows and motorsport events.  </p>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >I got my license in early 2022. My first taste of car ownership was a 55 plate Fiesta (the newest car I've owned to date!) which i had for two years. It was a great little car and certainly marked a big milestone in my life.  </p>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >I then got my first taste of project car life with my family's 2003 Mini Cooper S. I love this car but it needed alot putting right, however all is forgiven when you are on a nice, empty road and can (safely and legally!) let that supercharger sing!  </p>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >I currently drive my family's Smart Roadster. This little gem has been the pride of the fleet for a 6 years now. It has its faults of course, but it such a gem to drive. I will forever keep fond memories of my dad and I working on it together.   </p>
+                <div class="gap"></div>
+                <div class="text-left">
+                <figure style="display: inline-block; max-width: 90%; margin: 0;">
+                    <img src="Images/signal-2025-03-16-13-51-52-788.jpg" class="img-fluid" style="width: 80%; height: auto;">
+                    <figcaption class="mt-2" style="font-size: 0.9rem; color:#007bff ; text-align: left; width: 100%;">      </figcaption>
+                    </figure>
+                </div>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >This image shows me alongside the Roadster and the Mini. </p>
+                <div class="gap"></div>
+                <h3>Cyber Security/IT</h3>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >I have also had an interest in IT from a young age. My dad is an IT professional, so naturally I showed interest in this from a young age. I have fond memories of my dad giving me an old HP Compaq laptop when I was about 12, I then installed Ubuntu onto it and spent hours scrathing my head how to set it up. </p>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >As i got older and my knowledge of the field expanded, I began showing interest in Cyber Security. I find the vastness of the field fascinating, it also provides fantastic opportunity to solve challenges and learn how things work under the hood. For years, I have watched YouTube videos on famous data breaches/malware and their affect on users,  I have found them very interesting. </p>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >DISCLAIMER: The next two paragraphs are my OPINION. </p>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >In recent years, I have become a big advocate for online privacy and security in my personal life. I have realised that social media, streaming platforms and other big companies (such as big game studios) provide less benefit to users than before, and are actively trying to spy on you whilst making you own nothing. I am a firm believer in the saying "you'll own nothing and be happy" </p>
+                <div class="gap"></div>
+                <p class = "text-white custom-paragraph" >I also believe we are now at a point where data sovereignty is crucial to keeping private and secure in this digital age. I would love to educate the masses on why people should care about maintaining good security and privacy practices, as I feel many people outside of the field don't take it seriously enough. </p>
+                <div class="gap"></div>
+                <div class="text-left">
+                <figure style="display: inline-block; max-width: 90%; margin: 0;">
+                    <img src="Images/PXL_20250529_131117605.jpg" class="img-fluid" style="width: 80%; height: auto;">
+                    <figcaption class="mt-2" style="font-size: 0.9rem; color:#007bff ; text-align: left; width: 100%;">      </figcaption>
+                    </figure>
+                </div>
+                <div class="gap"></div>
+                <h3>Hifi Systems</h3>
+                <p class = "text-white custom-paragraph" >I also quite like vintage Hifi systems. I think its great how (if you know where to look) you can pick up really crisp-sounding, high quality for next to nothing. I personally run a set of 2000s Sonos 75w bookshelf speakers with a Sony Reciever and Kenwood hifi CD player from the 90s (relatively simple setup I know). They sound so good and just work. Much better than a cheap soundbar or (god forbid) cheap PC speakers. I also love how these retro systems look, the saying "they dont make them like they used to" comes to mind.  </p>
+
+
+
+
+
+
+
+
+                </div>
+        </div>
+        </div>
+    </div>
+    <div>
+    </main>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 Caleb Richards. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
